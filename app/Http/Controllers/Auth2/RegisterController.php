@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth2;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,8 @@ class RegisterController extends Controller
        $user=User::create([
            'name'=>$request->input('name'),
            'email'=>$request-> input('email'),
-           'password'=> Hash::make($request-> input('password'))
+           'password'=> Hash::make($request-> input('password')),
+           'role_id' => Role::where('name','user')->first()->id,
        ]);
        Auth::login($user);
 

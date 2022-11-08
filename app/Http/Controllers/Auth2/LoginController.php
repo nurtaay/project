@@ -20,6 +20,8 @@ class LoginController extends Controller
              'password'=>'required|string'
          ]);
        if(Auth::attempt($validated)){
+           if(Auth::user()->role->name == "admin")
+               return redirect()->intended('/adm/users');
            return redirect()->intended('/posts');
        }
        return back()->withErrors('Incorrect email or password');

@@ -18,9 +18,11 @@ class PostController extends Controller
         return view('posts.index',['posts'=>$allPosts,'categories'=>Category::all()]);
     }
     public function  create(){
+        $this->authorize('create',Post::class);
         return view ('posts.create',['categories'=>Category::all()]);
     }
     public function store(Request $req){
+        $this->authorize('create',Post::class);
        $validated= $req->validate([
             'title'=>'required',
             'image'=>'required',
@@ -60,6 +62,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+        $this->authorize('delete',$post);
         $post->delete();
         return redirect()->route('posts.index');
 
