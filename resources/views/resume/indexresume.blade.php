@@ -4,9 +4,9 @@
     <a class="btn btn-danger" href="{{ route('resumes.create') }}">Create resume</a>
 
     <div class="container">
+        <a style="margin-top: 100px" href="{{route('resumes.create')}}" class="btn btn-primary">Create</a>
         <div class="row justify-content-center">
             <div class="col-md-10">
-                <a href="{{route('resumes.create')}}" class="btn-outline-primary">Create</a>
                 <table  style="width: 800px; margin-top: 100px">
                     @foreach($resumes as $resume)
                     <tr>

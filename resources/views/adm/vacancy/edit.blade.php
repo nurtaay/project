@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.adm')
 @section('title','edit page')
 @section('content')
 
@@ -12,6 +12,8 @@
 
                     <input class="card-title" type="text" name="title" value="{{$post->title}}"><br>
                     <input class="card-title" type="text" name="image" value="{{$post->image}}"><br>
+
+
 
                     <select name="category_id">
                         @foreach($categories as $cat)

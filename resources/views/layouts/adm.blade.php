@@ -67,7 +67,7 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item active" href="{{route('adm.users.search')}}">USERS LIST</a>
-                    <a class="collapse-item" href="cards.html">Roles</a>
+                    <a class="collapse-item" href="{{route('adm.roles.index')}}">Roles</a>
                 </div>
             </div>
         </li>
@@ -83,8 +83,9 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="utilities-color.html">Categories</a>
-                    <a class="collapse-item" href="utilities-border.html">Comments</a>
+                    <a class="collapse-item" href="{{route('posts.product')}}">Jobs</a>
+                    <a class="collapse-item" href="{{route('adm.vacancy.index')}}">Vacancy Category</a>
+                    <a class="collapse-item" href="{{route('adm.admcomment.index')}}">Comments</a>
                 </div>
             </div>
         </li>

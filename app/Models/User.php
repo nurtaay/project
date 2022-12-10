@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'avatar',
         'is_active'
     ];
 
@@ -46,7 +47,7 @@ class User extends Authenticatable
     public function resumes(){
         return $this->hasMany(Resume::class);
     }
-    function posts(){
+    public function posts(){
         return $this->hasMany(Post::class);
     }
 
@@ -55,5 +56,12 @@ class User extends Authenticatable
     }
     public function role(){
         return $this->belongsTo(Role::class);
+    }
+    public function favouritePosts(){
+        return $this->belongsToMany(Post::class,'favourite')
+            ->withTimestamps();
+    }
+    public function Rposts(){
+        return $this->belongsToMany(Post::class)->withPivot('message')->withTimestamps();
     }
 }

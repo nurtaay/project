@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','create page')
 @section('content')
-    <div class="container">
+    <div class="container" style="margin-top: 100px">
         @if($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -13,8 +13,7 @@
             @endif
         <div class="row justify-content-center">
             <div class="col-md-10">
-
-                    <form action ="{{route('posts.store')}}" method="post">
+                    <form action ="{{route('posts.store')}}" method="post" style="margin-top: 100px" enctype="multipart/form-data">
                     @csrf
                         <div class="form-group">
                             <label for="titleInput" >Title</label>
@@ -24,7 +23,7 @@
 
                         <div class="form-group">
                             <label for="imageInput" >Image</label>
-                            <input type="text" class="form-control  @error('image') is-invalid @enderror" name="image" id="imageInput" placeholder="Enter image url " >
+                            <input type="file" class="form-control  @error('image') is-invalid @enderror" name="image" id="imageInput" placeholder="Enter image url " >
 
                         </div>
                         <div class="form-group">

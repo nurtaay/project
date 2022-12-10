@@ -1,38 +1,38 @@
 @extends('layouts.adm')
-@section('title','index page')
+
+@section('title', 'MAIN  PAGE')
+
 @section('content')
-
-    <a href="{{route('vacancy.create')}}" class="btn btn-outline-primary">Create</a>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Code</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-
-        </thead>
-        <tbody>
-        @for($i=0;$i<count($vacancy);$i++)
+    <div class="container" style="margin-left: 7rem; margin-top: 7rem">
+        <a href="{{route('adm.roles.create')}}" class="btn btn-outline-success">Add</a>
+        <table class="table">
+            <thead>
             <tr>
-                <th scope="row">{{$i+1}}</th>
-                <td>{{$vacancy[$i]->name}}</td>
-                <td>{{$vacancy[$i]->code}}</td>
-                <td><a class="btn btn-outline-success">Edit</a></td>
-                <td>
-                    <form action="{{route('vacancy.destroy', $vacancy[$i]->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger" type="submit">Delete</button>
-                    </form>
-                </td>
+                <th>Name</th>
+                <th>Delete</th>
             </tr>
-        @endfor
-        </tbody>
-
-    </table>
+            </thead>
+            <tbody>
+            @foreach($roles as $role)
+                <tr>
+                    <td>
+                        {{$role->name}}
+                    </td>
+                    <td>
+                        <form action="{{route('adm.roles.destroy',$role->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+            <tr>
+            </tbody>
+        </table>
+    </div>
 @endsection
+
 
 
 

@@ -9,7 +9,12 @@ class Post extends Model
 {
     use HasFactory;
     protected $fillable=['title','image','content','category_id','user_id'];
-    public function category (){
+    public function usersFavourite(){
+        return $this->belongsToMany(User::class,'favourite')
+            ->withTimestamps();
+
+    }
+    public function category(){
         return $this->belongsTo(Category::class);
     }
     public function user(){
@@ -17,5 +22,8 @@ class Post extends Model
     }
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+    public function Rposts2(){
+        return $this->belongsToMany(User::class)->withPivot('message')->withTimestamps();
     }
 }

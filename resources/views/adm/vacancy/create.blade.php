@@ -6,7 +6,7 @@
      <div class="container text-white" style="padding: 10px;margin-top:60px; ">
 
          <div class="col" style="padding: 5px 300px 30px 300px; ">
-             <form action="{{ route('adm.roles.store') }}" method="post" style="background-color: #66f;padding: 10px 30px 10px 30px ; border-radius: 20px">
+             <form action="{{ route('adm.vacancy.store') }}" method="post" style="background-color: #66f;padding: 10px 30px 10px 30px ; border-radius: 20px">
                  @csrf
 
                  <div class="mb-2">

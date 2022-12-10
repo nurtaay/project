@@ -2,16 +2,19 @@
 @section('title','users page')
 @section('content')
 
-<form action="{{route('adm.users.search')}}" method="GET">
-    @csrf
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">@</span>
-        </div>
-        <input type="text" name="search" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
-        <button class="btn btn-success" type="submit">Search</button></div>
+    <form action="{{route('adm.users.search')}}" method="GET">
+        @csrf
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">@</span>
+            </div>
+            <input type="text" name="search" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+            <button class="btn btn-success" type="submit">Search</button></div>
 
-</form>
+    </form>
+
+
+
 
     <table class="table">
         <thead>
@@ -20,8 +23,8 @@
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Role</th>
-            <th scope="col">#</th>
-            <th scope="col">##</th>
+            <th scope="col">ban/unban</th>
+            <th scope="col">edit role</th>
         </tr>
         </thead>
         <tbody>
@@ -45,13 +48,26 @@
                             @if($users[$i]->is_active)
                                 Ban
                             @else
-                                 Unban
+                                Unban
                             @endif
 
                         </button>
                     </form>
                 </td>
-                <td></td>
+                <td><form action="{{route('adm.users.update',$users[$i]->id)}}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <div>
+                            <select name="role_id">
+                                @foreach($roles as $role)
+                                    <option
+                                        @if( $role->id == $users[$i]->role_id ) selected
+                                        @endif value="{{$role->id}}">{{$role->name}}</option>
+                                @endforeach
+                            </select>
+                            <button type="submit">OK</button>
+                        </div>
+                    </form></td>
             </tr>
         @endfor
 

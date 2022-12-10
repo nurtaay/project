@@ -4,39 +4,47 @@
 
 
 
-    <div class="card" style="width: 18rem;">
-        <img src="{{$post->image}}" class="card-img-top" alt="...">
+    <div class="card" style="width: 50rem; margin-top: 250px; margin-left: 200px">
         <div class="card-body">
             <h5 class="card-title">{{$post->title}}</h5>
             <p class="card-text">{{$post->content}}</p>
-            <a href="{{route('posts.edit',$post->id)}}" class="btn btn-primary">Edit</a>
         </div>
         <div class="form-group">
             <div>
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" style="width: 1500px">
                                 <form action="{{route('comments.store')}}" method="post">
                             @csrf
-                            <textarea name="content" rows="3"></textarea>
+                            <textarea name="content" rows="3" placeholder="откликаться"></textarea>
                             <input type="hidden" name="post_id" value="{{$post->id}}">
                             <button type="submit" class="btn btn-outline-success">Save</button>
                         </form>
                     </div>
                 </div>
+                <a href="{{route('posts.message',$post->id)}}">Otk</a>
+                <form action="{{route('posts.all', $post->id)}}" method="post">
+                    @csrf
+                    <input type="text" class="form-check" name="message">
+                    <button class="btn btn-outline-primary">OTk</button>
+                </form>
             </div>
             <hr>
+            <form action ="{{route('posts.favourite',$post->id)}}" method="post">
+                @csrf
+                <button class="btn btn-outline-success" type="submit">Fav list</button>
+
+            </form>
             <div>
                 <div class="card">
                     <div class="card-body">
                         @foreach($post->comments as $comment)
+                            <p type="button"><small>{{$comment->user->name}} </small></p>
+                            <p type="button"><small>{{$comment->created_at}} </small></p>
                             <p>{{$comment->content}}</p>
-                            <button type="button"class="btn btn-warning"><small>{{$comment->user->name}} </small>
-                            </button >
-                            <button type="button"class="btn btn-warning"><small>{{$comment->created_at}} </small></button>
                             <form action="{{route('comments.destroy',$comment->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit"class="btn btn-outline-danger">DELETE</button>
+                                <button type="submit" class="btn btn-outline-danger">DELETE</button>
                             </form>
                         @endforeach
                     </div>

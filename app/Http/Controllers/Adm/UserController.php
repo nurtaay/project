@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Adm;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class UserController extends Controller
             $users = User::with('role')->get();
         }
 
-        return view('adm.users',['users'=>$users]);
+        return view('adm.users',['users'=>$users, 'roles'=>Role::all() ]);
     }
     public function ban(User $user){
         $user->update([
@@ -34,5 +35,16 @@ class UserController extends Controller
         ]);
         return back();
     }
-
+    public function edit(User $user){
+        return view('adm.users',['user'=>$user, 'roles'=>Role::all()]);
+    }
+    public  function update(Request $request,User $user){
+        $user->update([
+            'id'=>$request->id,
+            'role_id'=>$request->input('role_id'),
+        ]);
+        return back() ;
+    }
 }
+
+
